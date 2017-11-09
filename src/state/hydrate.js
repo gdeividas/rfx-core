@@ -17,7 +17,7 @@ export function dehydrate() {
 */
 export function rehydrate() {
   // inject initial state into stores
-  return $store.set(window.__STATE);
+  return $store.set(JSON.parse(window.__STATE));
 }
 
 
@@ -25,11 +25,6 @@ export function rehydrate() {
   HRM Rehydrate (on 'module.hot.accept')
 */
 export function hotRehydrate() {
-  if (window.__STORE) {
-    window.__STORE = $store.set(JSON.parse(dehydrate(window.__STORE)));
-  }
-  if (!window.store) {
-    window.__STORE = $store.get();
-  }
-  return window.__STORE;
+   window.__STORE = $store.set(JSON.parse(dehydrate(window.__STORE || {})));
+   return window.__STORE;
 }
