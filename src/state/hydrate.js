@@ -25,6 +25,6 @@ export function rehydrate() {
   HRM Rehydrate (on 'module.hot.accept')
 */
 export function hotRehydrate() {
-   window.__STORE = $store.set(JSON.parse(dehydrate(window.__STORE || {})));
+   window.__STORE = $store.set(JSON.parse(dehydrate()));
    return window.__STORE;
 }
